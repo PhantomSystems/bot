@@ -1,7 +1,0 @@
-{
-	"$schema": "https://unpkg.com/knip@latest/schema.json",
-	"entry": ["convex/**/*.ts", "src/**/*.ts", "src/**/*.test.ts"],
-	"project": ["convex/**/*.ts", "src/**/*.ts"],
-	"ignore": ["convex/_generated/**"],
-	"ignoreExportsUsedInFile": true
-}
