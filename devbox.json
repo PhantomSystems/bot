@@ -5,7 +5,7 @@
     "erlang@23.3.4",
     "gleam@latest",
     "git@latest",
-    "libnotify@latest"
+    "libnotify@0.8.7"
   ],
   "shell": {
     "init_hook": [
