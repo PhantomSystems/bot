@@ -1,0 +1,3 @@
+[submodule "lanyard"]
+	path = lanyard
+	url = git@github.com:Phineas/lanyard.git
