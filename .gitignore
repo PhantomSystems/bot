@@ -21,3 +21,8 @@ serverbot-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+*.lock
+pnpm-lock.yaml
+package-lock.json
+pnpm-workspace.yaml
