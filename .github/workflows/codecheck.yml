@@ -8,29 +8,88 @@ on:
   pull_request:
 
 jobs:
-  check-code:
+  elixir-root:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: . # Root directory
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
+
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "28"
-          gleam-version: "1.13.0"
-          rebar3-version: "3"
-          elixir-version: "1"
-      - run: mix deps.get
-      - run: mix format
-      - run: mix credo
-  test:
+          elixir-version: "1" # Adjust if you need a specific Elixir version
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Check formatting
+        run: mix format --check
+
+      - name: Run credo
+        run: mix credo
+
+      - name: Run tests
+        run: mix test
+
+  gleam-api:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
+
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "28"
-          gleam-version: "1.13.0"
+          gleam-version: "1.5.0" # Latest as of late 2025; adjust if needed
           rebar3-version: "3"
+
+      - name: Download dependencies
+        run: gleam deps download
+
+      - name: Run tests
+        run: gleam test
+
+      - name: Check formatting
+        run: gleam format --check src test
+
+  phoenix-web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: "28"
           elixir-version: "1"
-      - run: cd api && gleam deps download
-      - run: cd api && gleam test
-      - run: cd api && gleam format --check src test
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Check formatting
+        run: mix format --check
+
+      - name: Run credo
+        run: mix credo
+
+      - name: Run tests
+        run: mix test
+
+      # If your Phoenix app needs a database for tests, uncomment and customize:
+      # services:
+      #   db:
+      #     image: postgres:16
+      #     ports: ["5432:5432"]
+      #     env:
+      #       POSTGRES_PASSWORD: postgres
+      #     options: >-
+      #       --health-cmd pg_isready
+      #       --health-interval 10s
+      #       --health-timeout 5s
+      #       --health-retries 5
