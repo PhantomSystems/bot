@@ -4,7 +4,7 @@
     "elixir@1.18.1",
     "erlang@23.3.4",
     "gleam@latest",
-    "git@latest",
+    "git@2.51.2",
     "libnotify@latest"
   ],
   "shell": {
