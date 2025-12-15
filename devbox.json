@@ -3,7 +3,7 @@
   "packages": [
     "elixir@1.18.1",
     "erlang@23.3.4",
-    "gleam@latest",
+    "gleam@0.34.0",
     "git@latest",
     "libnotify@latest"
   ],
