@@ -24,7 +24,10 @@ defmodule Serverbot.MixProject do
       {:flow, "~> 1.0"},
       {:gen_stage, "~> 1.0"},
       {:stripe, "~> 0.0.1"},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:disco_log, "~> 1.0.3"},
+      {:sentry, "~> 11.0"},
+      {:hackney, "~> 1.20"}
     ]
   end
 end
