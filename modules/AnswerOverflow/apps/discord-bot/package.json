@@ -1,0 +1,30 @@
+{
+	"name": "@packages/discord-bot",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "NODE_ENV=development bun run --env-file=../../.env --watch index.dev.ts",
+		"start": "bun run --env-file=../../.env index.ts",
+		"typecheck": "tsgo -p tsconfig.json --noEmit",
+		"typecheck:slow": "tsc -p tsconfig.json --noEmit",
+		"clean": "rm -rf node_modules .turbo",
+		"test": "vitest run --no-watch --pool=forks",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"@packages/database": "workspace:*",
+		"@packages/database-utils": "workspace:*",
+		"@packages/observability": "workspace:*",
+		"discord.js": "^14.22.1",
+		"effect": "catalog:",
+		"posthog-node": "^4.2.0"
+	},
+	"devDependencies": {
+		"@effect/language-service": "catalog:",
+		"@effect/vitest": "catalog:",
+		"@packages/typescript-config": "workspace:*",
+		"@types/bun": "latest",
+		"vitest": "catalog:"
+	}
+}
